@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+  Hi {{ current_user.name }}!
+{% endif %}
+<br>
+<ul>
+	<li><a href="{{ url_for('address') }}">Address</a></li>
+	<li><a href="{{ url_for('profile') }}">Profile</a></li>
+	
+</ul>
+
+
+{% endblock %}

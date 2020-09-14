@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1> addres </h1>
+  <form method="POST" action="/address">
+  {{ form.csrf_token  }}
+
+  <fieldest class="adress"> 
+    {{ form.name.label }}
+    {{ form.name(placeholder="address") }}
+    {% if form.name.errors  %}
+    <ul class="errors">
+        {% for error in form.name.errors %}
+        <li>{{ error }}</li>{% endfor %}
+    </ul>
+      {% endif %}
+  </fieldest>
+   <div class="submit-button">
+    {{ form.submit }}
+   </div>
+   {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+   <br>
+     {{ message }}
+    {% endfor %}
+   {% endwith %} 
+  </form>      
+     
+    
+
+{% endblock %}
+
+
+

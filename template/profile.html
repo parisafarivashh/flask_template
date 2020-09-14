@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>The profile {{ current_user.name }}</h1>
+
+<form method="POST" action='/profile'>
+	{{ form.csrf_token  }}
+
+   <fieldset class="name">
+   	  {{ form.name.label }}
+      {{ form.name(placeholder='new name') }}
+      {% if form.name.errors %}
+     <ul class="errors">
+        {% for error in form.confirm.errors %}
+        <li>{{ error }}</li>{% endfor %}
+     </ul>
+     {% endif %}
+       
+   </fieldset>   
+   <fieldset class="last_name">
+      {{ form.last_name.label}}
+      {{ form.last_name(placeholder ='last_name') }}
+      {% if form.last_name.errors %}
+     <ul class="errors">
+       {% for error in form.last_name.errors %}
+       <li>{{ error }}</li>{% endfor %}
+     </ul>
+     {% endif %}
+        
+   </fieldset>
+
+   <div class="submit-button" >
+     {{ form.submit }}
+   </div>
+       {% with messages = get_flashed_messages() %}
+         {% for message in messages %}   
+         <br>
+          {{ message }}
+         {% endfor %}  
+       {% endwith  %}
+  </form>    
+
+
+
+
+{% endblock %}
+
